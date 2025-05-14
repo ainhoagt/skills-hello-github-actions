@@ -6,15 +6,10 @@ name: Step 0, Welcome
 # This will run every time we create push a commit to `main`.
 # Reference: https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows
 on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-
-# Reference: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
+  pull_request:
+    types: [opened]
 permissions:
-  # Need `contents: read` to checkout the repository.
-  # Need `contents: write` to update the step metadata.
+  pull-requests: write
   contents: write
 
 jobs:
@@ -89,3 +84,5 @@ jobs:
           from_step: 0
           to_step: 1
           branch_name: welcome-workflow
+          name: Post welcome comment
+          
